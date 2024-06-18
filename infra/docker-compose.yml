@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+
+  api:
+    build:
+      context: ./api/php
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ../api/:/var/www/api
+      - ./api/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./api/php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug-custom.ini:ro
+    environment:
+      PHP_IDE_CONFIG: serverName=api
+
+  web:
+    image: nginx:1.17-alpine
+    restart: unless-stopped
+    ports:
+      - ${NGINX_API_PORT}:90
+    volumes:
+      - ../api/:/var/www/api
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - api
