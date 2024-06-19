@@ -8,10 +8,10 @@ trait CheckSeasonTrait
 {
     public function isSummerSeason(\DateTime $startDate): bool
     {
-        $startSeasonDate = (new \DateTime())->modify('April 1st')->add(DateInterval::createFromDateString('1 year'));
-        $endSeasonDate = (new \DateTime())->modify('September 30st')->add(DateInterval::createFromDateString('1 year'));
+        $startSeasonDate = (new \DateTime())->modify('April 1st 00:00:00')->add(DateInterval::createFromDateString('1 year'));
+        $endSeasonDate = (new \DateTime())->modify('October 1st 00:00:00')->add(DateInterval::createFromDateString('1 year'));
 
-        if ($startDate >= $startSeasonDate && $startDate <= $endSeasonDate) {
+        if ($startDate >= $startSeasonDate && $startDate < $endSeasonDate) {
             return true;
         }
 
@@ -20,10 +20,10 @@ trait CheckSeasonTrait
 
     public function isWinterSeason(\DateTime $startDate): bool
     {
-        $startSeasonDate = (new \DateTime())->modify('October 1st');
-        $endSeasonDate = (new \DateTime())->modify('January 14st')->add(DateInterval::createFromDateString('1 year'));
+        $startSeasonDate = (new \DateTime())->modify('October 1st 00:00:00');
+        $endSeasonDate = (new \DateTime())->modify('February 1st 00:00:00')->add(DateInterval::createFromDateString('1 year'));
 
-        if ($startDate >= $startSeasonDate && $startDate <= $endSeasonDate) {
+        if ($startDate >= $startSeasonDate && $startDate < $endSeasonDate) {
             return true;
         }
 
@@ -32,7 +32,7 @@ trait CheckSeasonTrait
 
     public function isSpringSeason(\DateTime $startDate): bool
     {
-        $startSeasonDate = (new \DateTime())->modify('January 15st')->add(DateInterval::createFromDateString('1 year'));
+        $startSeasonDate = (new \DateTime())->modify('January 15st 00:00:00')->add(DateInterval::createFromDateString('1 year'));
 
         if ($startDate >= $startSeasonDate) {
             return true;

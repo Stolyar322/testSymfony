@@ -8,9 +8,9 @@ trait CheckPaymentDateTrait
 {
     public function isCurrentNovemberPaymentPeriod(\DateTime $paymentDate): bool
     {
-        $seasonEndDate = (new \DateTime())->modify('November 30st');
+        $seasonEndDate = (new \DateTime())->modify('December 1st 00:00:00');
 
-        if ($paymentDate <= $seasonEndDate) {
+        if ($paymentDate < $seasonEndDate) {
             return true;
         }
 
@@ -19,10 +19,10 @@ trait CheckPaymentDateTrait
 
     public function isCurrentDecemberPaymentPeriod(\DateTime $paymentDate): bool
     {
-        $seasonStartDate = (new \DateTime())->modify('December 1st');
-        $seasonEndDate = (new \DateTime())->modify('December 1st');
+        $seasonStartDate = (new \DateTime())->modify('December 1st 00:00:00');
+        $seasonEndDate = (new \DateTime())->modify('January 1st 00:00:00')->add(DateInterval::createFromDateString('1 year'));
 
-        if ($paymentDate >= $seasonStartDate && $paymentDate <= $seasonEndDate) {
+        if ($paymentDate >= $seasonStartDate && $paymentDate < $seasonEndDate) {
             return true;
         }
 
@@ -31,10 +31,10 @@ trait CheckPaymentDateTrait
 
     public function isNextJanuaryPaymentPeriod(\DateTime $paymentDate): bool
     {
-        $seasonStartDate = (new \DateTime())->modify('January 1st')->add(DateInterval::createFromDateString('1 year'));
-        $seasonEndDate = (new \DateTime())->modify('January 30st')->add(DateInterval::createFromDateString('1 year'));
+        $seasonStartDate = (new \DateTime())->modify('January 1st 00:00:00')->add(DateInterval::createFromDateString('1 year'));
+        $seasonEndDate = (new \DateTime())->modify('February 1st 00:00:00')->add(DateInterval::createFromDateString('1 year'));
 
-        if ($paymentDate >= $seasonStartDate && $paymentDate <= $seasonEndDate) {
+        if ($paymentDate >= $seasonStartDate && $paymentDate < $seasonEndDate) {
             return true;
         }
 
@@ -43,9 +43,9 @@ trait CheckPaymentDateTrait
 
     public function isCurrentMarchPaymentPeriod(\DateTime $paymentDate): bool
     {
-        $seasonEndDate = (new \DateTime())->modify('March 31st');
+        $seasonEndDate = (new \DateTime())->modify('April 1st 00:00:00');
 
-        if ($paymentDate <= $seasonEndDate) {
+        if ($paymentDate < $seasonEndDate) {
             return true;
         }
 
@@ -54,10 +54,10 @@ trait CheckPaymentDateTrait
 
     public function isCurrentAprilPaymentPeriod(\DateTime $paymentDate): bool
     {
-        $seasonStartDate = (new \DateTime())->modify('April 1st');
-        $seasonEndDate = (new \DateTime())->modify('April 30st');
+        $seasonStartDate = (new \DateTime())->modify('April 1st 00:00:00');
+        $seasonEndDate = (new \DateTime())->modify('May 1st 00:00:00');
 
-        if ($paymentDate >= $seasonStartDate && $paymentDate <= $seasonEndDate) {
+        if ($paymentDate >= $seasonStartDate && $paymentDate < $seasonEndDate) {
             return true;
         }
 
@@ -66,10 +66,10 @@ trait CheckPaymentDateTrait
 
     public function isCurrentMayPaymentPeriod(\DateTime $paymentDate): bool
     {
-        $seasonStartDate = (new \DateTime())->modify('May 1st');
-        $seasonEndDate = (new \DateTime())->modify('May 31st');
+        $seasonStartDate = (new \DateTime())->modify('May 1st 00:00:00');
+        $seasonEndDate = (new \DateTime())->modify('June 1st 00:00:00');
 
-        if ($paymentDate >= $seasonStartDate && $paymentDate <= $seasonEndDate) {
+        if ($paymentDate >= $seasonStartDate && $paymentDate < $seasonEndDate) {
             return true;
         }
 
@@ -78,9 +78,9 @@ trait CheckPaymentDateTrait
 
     public function isCurrentAugustPaymentPeriod(\DateTime $paymentDate): bool
     {
-        $seasonEndDate = (new \DateTime())->modify('August 31st');
+        $seasonEndDate = (new \DateTime())->modify('September 1st 00:00:00');
 
-        if ($paymentDate <= $seasonEndDate) {
+        if ($paymentDate < $seasonEndDate) {
             return true;
         }
 
@@ -89,10 +89,10 @@ trait CheckPaymentDateTrait
 
     public function isCurrentSeptemberPaymentPeriod(\DateTime $paymentDate): bool
     {
-        $seasonStartDate = (new \DateTime())->modify('September 1st');
-        $seasonEndDate = (new \DateTime())->modify('September 30st');
+        $seasonStartDate = (new \DateTime())->modify('September 1st 00:00:00');
+        $seasonEndDate = (new \DateTime())->modify('October 1st 00:00:00');
 
-        if ($paymentDate >= $seasonStartDate && $paymentDate <= $seasonEndDate) {
+        if ($paymentDate >= $seasonStartDate && $paymentDate < $seasonEndDate) {
             return true;
         }
 
@@ -101,10 +101,10 @@ trait CheckPaymentDateTrait
 
     public function isCurrentOctoberPaymentPeriod(\DateTime $paymentDate): bool
     {
-        $seasonStartDate = (new \DateTime())->modify('October 1st');
-        $seasonEndDate = (new \DateTime())->modify('October 31st');
+        $seasonStartDate = (new \DateTime())->modify('October 1st 00:00:00');
+        $seasonEndDate = (new \DateTime())->modify('November 1st 00:00:00');
 
-        if ($paymentDate >= $seasonStartDate && $paymentDate <= $seasonEndDate) {
+        if ($paymentDate >= $seasonStartDate && $paymentDate < $seasonEndDate) {
             return true;
         }
 
