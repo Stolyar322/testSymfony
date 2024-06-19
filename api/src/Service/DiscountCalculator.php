@@ -14,11 +14,14 @@ class DiscountCalculator
 
     public function calculateDiscount(
         \DateTime $startDate,
-        \DateTime $paymentDate,
-        \DateTime $birthDate
+        \DateTime $birthDate,
+        ?\DateTime $paymentDate
     ): float {
+        $seasonDiscount = 0;
         $ageDiscount = $this->getAgeDiscount($birthDate);
-        $seasonDiscount = $this->getSeasonDiscount($startDate, $paymentDate);
+        if ($paymentDate !== null) {
+            $seasonDiscount = $this->getSeasonDiscount($startDate, $paymentDate);
+        }
 
         return $ageDiscount + $seasonDiscount;
     }
