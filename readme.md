@@ -1,4 +1,5 @@
 <h1>Для запуска проекта необходимо:</h1>
+
 - Выполнить команду docker compose up -d из директории /infra
 - Зайти внутрь контейнера api с помощью команды docker compose exec api bash
 - Выполнить команду composer install
