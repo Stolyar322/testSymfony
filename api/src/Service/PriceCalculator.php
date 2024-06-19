@@ -14,14 +14,14 @@ class PriceCalculator
         int $price,
         \DateTime $birthDate,
         \DateTime $startDate,
-        \DateTime $paymentDate
+        ?\DateTime $paymentDate
     ): int {
         $discount = $this->discountCalculator->calculateDiscount(
             $startDate,
-            $paymentDate,
-            $birthDate
+            $birthDate,
+            $paymentDate
         );
 
-        return $price * (1 - $discount);
+        return round($price * (1 - $discount));
     }
 }
