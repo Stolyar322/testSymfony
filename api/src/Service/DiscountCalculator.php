@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Enum\DiscountEnum;
 use App\Trait\CheckAgeTrait;
 use App\Trait\CheckPaymentDateTrait;
 use App\Trait\CheckSeasonTrait;
@@ -31,13 +32,13 @@ class DiscountCalculator
         return match (true) {
             $this->isSummerSeason($startDate) && $this->isCurrentNovemberPaymentPeriod($paymentDate) ||
             $this->isSpringSeason($startDate) && $this->isCurrentAugustPaymentPeriod($paymentDate) ||
-            $this->isWinterSeason($startDate) && $this->isCurrentMarchPaymentPeriod($paymentDate) => 0.07,
+            $this->isWinterSeason($startDate) && $this->isCurrentMarchPaymentPeriod($paymentDate) => DiscountEnum::SEVEN_PERCENT_DISCOUNT,
             $this->isSummerSeason($startDate) && $this->isCurrentDecemberPaymentPeriod($paymentDate) ||
             $this->isSpringSeason($startDate) && $this->isCurrentSeptemberPaymentPeriod($paymentDate) ||
-            $this->isWinterSeason($startDate) && $this->isCurrentAprilPaymentPeriod($paymentDate) => 0.05,
+            $this->isWinterSeason($startDate) && $this->isCurrentAprilPaymentPeriod($paymentDate) => DiscountEnum::FIVE_PERCENT_DISCOUNT,
             $this->isSummerSeason($startDate) && $this->isNextJanuaryPaymentPeriod($paymentDate) ||
             $this->isSpringSeason($startDate) && $this->isCurrentOctoberPaymentPeriod($paymentDate) ||
-            $this->isWinterSeason($startDate) && $this->isCurrentMayPaymentPeriod($paymentDate) => 0.03,
+            $this->isWinterSeason($startDate) && $this->isCurrentMayPaymentPeriod($paymentDate) => DiscountEnum::THREE_PERCENT_DISCOUNT,
             default => 0,
         };
     }
@@ -45,9 +46,9 @@ class DiscountCalculator
     private function getAgeDiscount(\DateTime $birthDate): float
     {
         return match (true) {
-            $this->isOlderThreeAge($birthDate) => 0.8,
-            $this->isOlderSixAge($birthDate) => 0.3,
-            $this->isOlderTwelveAge($birthDate) => 0.1,
+            $this->isOlderThreeAge($birthDate) => DiscountEnum::EIGHTY_PERCENT_DISCOUNT,
+            $this->isOlderSixAge($birthDate) => DiscountEnum::THIRTY_PERCENT_DISCOUNT,
+            $this->isOlderTwelveAge($birthDate) => DiscountEnum::TEN_PERCENT_DISCOUNT,
             default => 0,
         };
     }
