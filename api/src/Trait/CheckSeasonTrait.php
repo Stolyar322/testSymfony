@@ -8,7 +8,7 @@ trait CheckSeasonTrait
 {
     public function isSummerSeason(\DateTime $startDate): bool
     {
-        $startSeasonDate = (new \DateTime())->modify('April 1st');
+        $startSeasonDate = (new \DateTime())->modify('April 1st')->add(DateInterval::createFromDateString('1 year'));
         $endSeasonDate = (new \DateTime())->modify('September 30st')->add(DateInterval::createFromDateString('1 year'));
 
         if ($startDate >= $startSeasonDate && $startDate <= $endSeasonDate) {

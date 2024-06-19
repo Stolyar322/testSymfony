@@ -30,14 +30,14 @@ class DiscountCalculator
     {
         return match (true) {
             $this->isSummerSeason($startDate) && $this->isCurrentNovemberPaymentPeriod($paymentDate) ||
-            $this->isSpringSeason($startDate) && $this->isCurrentMarchPaymentPeriod($paymentDate) ||
-            $this->isWinterSeason($startDate) && $this->isCurrentAugustPaymentPeriod($paymentDate) => 0.07,
+            $this->isSpringSeason($startDate) && $this->isCurrentAugustPaymentPeriod($paymentDate) ||
+            $this->isWinterSeason($startDate) && $this->isCurrentMarchPaymentPeriod($paymentDate) => 0.07,
             $this->isSummerSeason($startDate) && $this->isCurrentDecemberPaymentPeriod($paymentDate) ||
-            $this->isSpringSeason($startDate) && $this->isCurrentAprilPaymentPeriod($paymentDate) ||
-            $this->isWinterSeason($startDate) && $this->isCurrentSeptemberPaymentPeriod($paymentDate) => 0.05,
+            $this->isSpringSeason($startDate) && $this->isCurrentSeptemberPaymentPeriod($paymentDate) ||
+            $this->isWinterSeason($startDate) && $this->isCurrentAprilPaymentPeriod($paymentDate) => 0.05,
             $this->isSummerSeason($startDate) && $this->isNextJanuaryPaymentPeriod($paymentDate) ||
-            $this->isSpringSeason($startDate) && $this->isCurrentMayPaymentPeriod($paymentDate) ||
-            $this->isWinterSeason($startDate) && $this->isCurrentOctoberPaymentPeriod($paymentDate) => 0.03,
+            $this->isSpringSeason($startDate) && $this->isCurrentOctoberPaymentPeriod($paymentDate) ||
+            $this->isWinterSeason($startDate) && $this->isCurrentMayPaymentPeriod($paymentDate) => 0.03,
             default => 0,
         };
     }
